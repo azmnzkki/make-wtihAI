@@ -28,7 +28,9 @@ async function sendReq() {
     }
 
     const data = await response.json();
-    const botResponse = data.result; 
+    var htmlContent = renderApiResult(data.result);
+
+    answer.innerHTML = htmlContent;
 
    
     chatHistory[chatHistory.length - 1].bot = botResponse;
@@ -66,3 +68,17 @@ function showMainChat() {
   chatContainer.style.display = "block";
   chatHistoryContainer.style.display = "none";
 }
+
+function renderApiResult(result) {
+  // Pisahkan teks berdasarkan blok kode dan teks lainnya
+  let formattedHtml = result
+    .replace(/```html([^`]+)```/g, "<pre><code>$1</code></pre>") // Mengubah blok kode menjadi <pre><code>
+    .replace(/### (.+)/g, "<h3>$1</h3>") // Mengubah heading menjadi <h3>
+    .replace(/\n/g, "<br>") // Mengganti line break dengan <br>
+    .replace(/\- (.+)/g, "<li>$1</li>") // Mengganti bullet point dengan <li>
+    .replace(/(\n\n)/g, "</p><p>") // Memisahkan paragraf
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  // Tambahkan wrapper <p> di awal dan akhir
+  return `<p>${formattedHtml}</p>`;
+}
+
