@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="style.css" />
+    
+  </head>
+  <body>
+    <div class="container">
+      <!-- Loading Animation -->
+      <div id="loading" class="loading" style="display: none">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
+
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="#" onclick="showMainChat()">Home</a></li>
+          <li><a href="#" onclick="showChatHistory()">Chat History</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+        <div id="chat-history" class="chat-history" style="display: none">
+          <h3>Chat History</h3>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <div class="chat-container" id="chat-container">
+          <div id="answer" class="chat-box"></div>
+
+          <div class="input-container">
+            <input autocomplete="off" type="text" id="question" class="chat-input" placeholder="Type your question..." />
+            <button onclick="sendReq()" class="send-btn">Send</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Chat Interface. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
